@@ -1,3 +1,1 @@
-/crockerometer/__pycache__/*
-/crockerometer2/__pycache__/*
-/crockerometer/migrations/__pycache__/*
+*.pyc
