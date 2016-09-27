@@ -8,9 +8,8 @@
   </head>
   <body>
     <h1>Crockerometer</h1>
-    <p>{{ interpolation_test }}</p>
     {% for user in users %}
-      <p>Hi, my name is {{ user }}</p>
+      <p>Hi, my name is {{ user.username }}</p>
       <p>I am the {% cycle 'first' 'second' %} user </p>
     {% endfor %}
 
