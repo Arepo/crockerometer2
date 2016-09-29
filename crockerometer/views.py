@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import User
+from .models import User, Woojit
 from .forms import WoojitForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def index(request):
@@ -18,7 +19,9 @@ def detail(request, user_id):
 def post_woojit(request):
   form = WoojitForm(request.POST)
   if form.is_valid():
-    woojit = Woojit(name   = form.cleaned_data['name'],
-                    number = form.cleaned_data['number'])
-    woojit.save()
+    # woojit = Woojit(name   = form.cleaned_data['name'],
+    #                 number = form.cleaned_data['number'])
+    # woojit.save()
+    form.save(commit = True)
+
   return HttpResponseRedirect('/')
