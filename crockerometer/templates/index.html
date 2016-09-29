@@ -14,4 +14,10 @@
   {% else %}
     <p>Nothing to see here</p>
   {% endif %}
+
+  <form action="post_url/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
 {% endblock %}
