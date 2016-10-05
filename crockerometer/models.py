@@ -8,12 +8,15 @@ class Metric(models.Model):
   users = models.ManyToManyField(User, through = 'Vote')
   name = models.CharField(max_length = 255)
 
+  def __str__(self):
+    return self.name
+
 class Vote(models.Model):
   metric = models.ForeignKey(Metric, on_delete = models.CASCADE)
   user = models.ForeignKey(User, on_delete = models.CASCADE)
   rating = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
-  email = models.EmailField
+  email = models.EmailField()
 
-class Woojit(models.Model):
-  name = models.CharField(max_length = 255)
-  number = models.IntegerField()
+  def __str__(self):
+    return self.email + ' on ' + str(self.metric)
+

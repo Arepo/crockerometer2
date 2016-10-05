@@ -15,9 +15,15 @@
     <p>Nothing to see here</p>
   {% endif %}
 
-  <form action="post_url/" method="post">
+  <form action="post_metric/" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form2.as_p }}
+    <input type="submit" value="Submit">
+  </form>
+
+  <form action="post_vote/" method="post">
+    {% csrf_token %}
+    {{ form3.as_p }}
     <input type="submit" value="Submit">
   </form>
 {% endblock %}
