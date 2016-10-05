@@ -8,7 +8,7 @@ def index(request):
   users = User.objects.all()
   form2 = MetricForm()
   form3 = VoteForm()
-  context = { 'users': users, 'form1': form1, 'form2': form2, 'form3': form3 }
+  context = { 'users': users, 'form2': form2, 'form3': form3 }
 
   return render(request, 'index.html', context)
 
@@ -16,6 +16,9 @@ def detail(request, user_id):
   user = User.objects.get(id = user_id)
 
   return render(request, 'user.html', {'user': user})
+
+def profile(request, username):
+  user = User.objects.get(username=username)
 
 def post_vote(request):
   form = VoteForm(request.POST)
