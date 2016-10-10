@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import User
+from .models import User, Rating
 from .forms import MetricForm, VoteForm
 from django.http import HttpResponseRedirect
 
@@ -19,11 +19,16 @@ def detail(request, user_id):
 
 def profile(request, username):
   user = User.objects.get(username=username)
+  ratings = Rating.objects.filter(user=user)
+  return render(request, 'profile.html', { 'username': username, 'ratings': ratings })
 
 def post_vote(request):
   form = VoteForm(request.POST)
   if form.is_valid():
-    vote = form.save(commit = True)
+    vote = form.save(commit = False)
+    if request.user.email:
+      vote.email = request.user.email
+    vote.save()
     # vote.user = User.objects.first()
     # vote.metric = Metric.objects.first()
   return HttpResponseRedirect('/')

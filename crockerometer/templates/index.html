@@ -5,8 +5,13 @@
   <h1>Crockerometer</h1>
 
   {% for user in users %}
-    <p>Hi, my name is {{ user.username }}</p>
+    <a href="/user/{{ user.username }}">{{ user.username }}</a>
     <p>I am the {% cycle 'first' 'second' %} user </p>
+    {% for rating in user.ratings %}
+      <p>{{ rating }}</p>
+      <p>Rating should be here</p>
+    {% endfor %}
+
   {% endfor %}
 
   {% if False %}

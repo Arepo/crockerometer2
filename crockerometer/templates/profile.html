@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <p>Hi, my name is {{ user.username }}!</p>
+  <p>Here are my ratings</p>
+  {% for rating in ratings %}
+    <p>{{ rating.metric }}</p>
+    <p>{{ rating }}<p>
+  {% endfor %}
+{% endblock %}

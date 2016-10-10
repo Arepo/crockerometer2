@@ -13,3 +13,4 @@ class MetricForm(forms.ModelForm):
   class Meta:
     model = Metric
     fields = ['name']
+
