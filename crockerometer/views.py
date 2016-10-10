@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import User, Rating
-from .forms import MetricForm, VoteForm
+from .forms import MetricForm, VoteForm, LoginForm
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -16,6 +17,26 @@ def detail(request, user_id):
   user = User.objects.get(id = user_id)
 
   return render(request, 'user.html', {'user': user})
+
+def login_view(request):
+  if request.method == 'POST':
+    form = LoginForm(request.POST)
+    if form.is_valid():
+      user = form.cleaned_data['username']
+      password = form.cleaned_data['password']
+      user = authenticate(username = user, password = password)
+      if user is not None:
+        if user.is_active:
+          login(request, user)
+          return HttpResponseRedirect('/')
+        else:
+          print("The account has been disabled!")
+      else:
+        print("The username and password were incorrect.")
+
+  else:
+    form = LoginForm()
+    return render(request, 'login.html', { 'form': form })
 
 def profile(request, username):
   user = User.objects.get(username=username)
