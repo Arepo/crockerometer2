@@ -3,13 +3,16 @@ from .models import User, Rating
 from .forms import MetricForm, VoteForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
 def index(request):
+  # users = User.objects.all()
   users = User.objects.all()
-  form2 = MetricForm()
-  form3 = VoteForm()
-  context = { 'users': users, 'form2': form2, 'form3': form3 }
+  metric_form = MetricForm()
+  vote_form = VoteForm()
+  context = { 'users': users, 'metric_form': metric_form, 'vote_form': vote_form }
 
   return render(request, 'index.html', context)
 
@@ -38,10 +41,24 @@ def login_view(request):
     form = LoginForm()
     return render(request, 'login.html', { 'form': form })
 
+def logout_view(request):
+  logout(request)
+  return HttpResponseRedirect('/')
+
 def profile(request, username):
   user = User.objects.get(username=username)
   ratings = Rating.objects.filter(user=user)
   return render(request, 'profile.html', { 'username': username, 'ratings': ratings })
+
+def register(request):
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect('/login/')
+  else:
+    form = UserCreationForm()
+    return render(request, 'registration.html', { 'form': form })
 
 def post_vote(request):
   form = VoteForm(request.POST)

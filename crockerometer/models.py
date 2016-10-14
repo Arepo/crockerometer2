@@ -23,5 +23,6 @@ class Vote(models.Model):
   score = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
   email = models.EmailField()
   def __str__(self):
-    return str(score)
+    return str(self.score)
+
 

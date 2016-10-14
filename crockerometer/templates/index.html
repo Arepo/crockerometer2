@@ -4,31 +4,27 @@
 {% block content %}
   <h1>Crockerometer</h1>
 
-  {% for user in users %}
-    <a href="/user/{{ user.username }}">{{ user.username }}</a>
-    <p>I am the {% cycle 'first' 'second' %} user </p>
-    {% for rating in user.ratings %}
-      <p>{{ rating }}</p>
-      <p>Rating should be here</p>
+  <ul>
+    {% for user in users %}
+      <li>
+        <a href="/user/{{ user.username }}">{{ user.username }}</a>
+        <p>I am the {% cycle 'first' 'second' %} user </p>
+        <p>Look at mah seksay ratings:</p>
+        {% for rating in user.rating_set.all %}
+          <p>{{ rating }}</p>
+        {% endfor %}
+      </li>
+
+     <!--  <input type="submit" value="Submit" data-id="{{ rating.id }}"> -->
+
+    </form>
+
     {% endfor %}
-
-  {% endfor %}
-
-  {% if False %}
-    <p>Launch the missiles!</p>
-  {% else %}
-    <p>Nothing to see here</p>
-  {% endif %}
+  </ul>
 
   <form action="post_metric/" method="post">
     {% csrf_token %}
-    {{ form2.as_p }}
-    <input type="submit" value="Submit">
-  </form>
-
-  <form action="post_vote/" method="post">
-    {% csrf_token %}
-    {{ form3.as_p }}
+    {{ metric_form.as_p }}
     <input type="submit" value="Submit">
   </form>
 {% endblock %}
