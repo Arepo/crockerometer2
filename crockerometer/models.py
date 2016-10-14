@@ -26,3 +26,11 @@ class Vote(models.Model):
     return str(self.score)
 
 
+  # Some practice drivel
+  def decorator_func(func):
+    func.attribute = 'foo'
+
+  @decorator_func
+  def random_func(self):
+    pass
+
