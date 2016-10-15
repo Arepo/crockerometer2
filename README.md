@@ -9,3 +9,14 @@
 > "Crocker's Rules" are named after Lee Daniel Crocker.
 
 > http://sl4.org/crocker.html
+
+Two issues confound actually implementing this philosophy: getting the word out, and persuading people that you really mean it. At the moment this is just a Django sandbox, but the goal is to develop it into a mini web service that lets people rate you on your crockerability (only if you sign up to invite them to), and provide a (hopefully dynamic) icon of your rating that you can use as an email signature.
+
+## Setting up
+
+Clone the project to your preferred environment, navigate to the root directory, set up the database with `python manage.py migrate` and run `python manage.py runserver`. 
+
+I've been running the project with Python 3.5.1, so I recommend at least that version (and it probably won't work at all in Python 2.x)
+
+The Crockerometer will be an instance of the 'Metric' model, so that thick-of-skin or recklessly optimistic users can create related (or possibly not) metrics on which others can rate them. You can create a Metric by first creating a super user (`python manage.py createsuperuser` from the command line), then navigating to localhost:8000/admin, logging in, and creating one from the admin panel
+
