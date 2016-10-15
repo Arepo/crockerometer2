@@ -18,5 +18,4 @@ Clone the project to your preferred environment, navigate to the root directory,
 
 I've been running the project with Python 3.5.1, so I recommend at least that version (and it probably won't work at all in Python 2.x)
 
-The Crockerometer will be an instance of the 'Metric' model, so that thick-of-skin or recklessly optimistic users can create related (or possibly not) metrics on which others can rate them. You can create a Metric by first creating a super user (`python manage.py createsuperuser` from the command line), then navigating to localhost:8000/admin, logging in, and creating one from the admin panel
-
+The Crockerometer will be an instance of the 'Metric' model, so that thick-of-skin or recklessly optimistic users can create related (or possibly not) metrics on which others can rate them. You can create a Metric by first creating a super user (`python manage.py createsuperuser` from the command line), then navigating to localhost:8000/admin, logging in, and creating one from the admin panel.
